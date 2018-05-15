@@ -31,8 +31,8 @@ object app {
 
     val authToken = System.getenv("AUTH_TOKEN")
 
-    val sendOne: Endpoint[String] = post("sms" :: "one" :: body.as[Message] :: headerExists("token")) {
-      (msg: Message, t: String) =>
+    val sendOne: Endpoint[String] = post("sms" :: "one" :: body.as[Message]) {
+      (msg: Message) =>
         val p: List[NameValuePair] = List(
           new BasicNameValuePair("From", "+13053631921"),
           new BasicNameValuePair("To", msg.to),
